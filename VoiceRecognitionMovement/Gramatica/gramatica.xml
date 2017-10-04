@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grammar
+  version="1.0"
+  xml:lang="en-US"
+  root="automationCommands"
+  xmlns="http://www.w3.org/2001/06/grammar"
+  tag-format="semantics/1.0">
+
+  <rule id="root">
+    <item>
+      <ruleref uri="#automationCommands"/>
+      <tag>out.command=rules.latest();</tag>
+    </item>
+  </rule>
+
+  <rule id="automationCommands">
+    <item>
+      <item> turn </item>
+      <item>
+        <ruleref uri="#commandActions" />
+        <tag> out.cmd=rules.latest(); </tag>
+      </item>
+      <item>
+        <ruleref uri="#deviceActions" />
+        <tag> out.device=rules.latest(); </tag>
+      </item>
+    </item>
+  </rule>
+
+  <rule id="commandActions">
+    <one-of>
+      <item>
+        parar <tag> out="PARAR"; </tag>
+      </item>
+      <item>
+        andar <tag> out="ANDAR"; </tag>
+      </item>
+      <item>
+        virar <tag> out="VIRAR"; </tag>
+      </item>
+    </one-of>
+  </rule>
+
+
+  <rule id="deviceActions">
+    <one-of>
+      <item>
+        frente<tag> out="FRENTE"; </tag>
+      </item>
+      <item>
+        tras<tag> out="TRAS"; </tag>
+      </item>
+      <item>
+        esquerda<tag> out="ESQUERDA"; </tag>
+      </item>
+      <item>
+        direita<tag> out="DIREITA"; </tag>
+      </item>
+    </one-of>
+  </rule>
+</grammar>
