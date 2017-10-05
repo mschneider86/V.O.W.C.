@@ -36,7 +36,13 @@
         andar <tag> out="ANDAR"; </tag>
       </item>
       <item>
+        anda <tag> out="ANDA"; </tag>
+      </item>
+      <item>
         virar <tag> out="VIRAR"; </tag>
+      </item>
+      <item>
+        vira <tag> out="VIRA"; </tag>
       </item>
     </one-of>
   </rule>

@@ -21,7 +21,9 @@ namespace VoiceRecognitionMovement
 
         private const string CMD_PARAR = "PARAR";
         private const string CMD_ANDAR = "ANDAR";
+        private const string CMD_ANDA = "ANDA";
         private const string CMD_VIRAR = "VIRAR";
+        private const string CMD_VIRA = "VIRA";
         private const string DEVICE_FRENTE = "FRENTE";
         private const string DEVICE_TRAS = "TRAS";
         private const string DEVICE_ESQEUERDA = "ESQUERDA";
@@ -84,27 +86,32 @@ namespace VoiceRecognitionMovement
             switch (cmd)
             {
                 case CMD_ANDAR:
+                case CMD_ANDA:
                     {
                         switch (device)
                         {
                             case DEVICE_FRENTE:
-
+                                Move(DEVICE_FRENTE, 1);
                                 break;
 
                             case DEVICE_TRAS:
+                                Move(DEVICE_TRAS, 1);
                                 break;
                         }
                     }
                     break;
 
                 case CMD_VIRAR:
+                case CMD_VIRA:
                     {
                         switch (device)
                         {
                             case DEVICE_DIREITA:
+                                Move(DEVICE_DIREITA, 1);
                                 break;
 
                             case DEVICE_ESQEUERDA:
+                                Move(DEVICE_ESQEUERDA, 1);
                                 break;
                         }
                     }
