@@ -10,7 +10,7 @@
 
     <StackPanel  Background="Gray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <StackPanel Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="600">
-        <Image x:Name="imgCadeira" Source="Assets/wheelchair.png" Width="100" Height="200" Margin="130,200,0,0">
+        <Image x:Name="imgCadeira" Source="Assets/wheelchair.png" Width="50" Height="100" Margin="130,200,0,0">
 
         </Image>
         

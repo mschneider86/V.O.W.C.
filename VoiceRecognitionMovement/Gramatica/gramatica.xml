@@ -33,6 +33,9 @@
         parar <tag> out="PARAR"; </tag>
       </item>
       <item>
+        para <tag> out="PARA"; </tag>
+      </item>
+      <item>
         andar <tag> out="ANDAR"; </tag>
       </item>
       <item>

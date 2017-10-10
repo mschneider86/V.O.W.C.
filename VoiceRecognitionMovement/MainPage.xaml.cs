@@ -5,6 +5,7 @@ using Windows.ApplicationModel;
 using Windows.Media.Capture;
 using Windows.Media.SpeechRecognition;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -20,6 +21,7 @@ namespace VoiceRecognitionMovement
         private const string TAG_DEVICE = "device";
 
         private const string CMD_PARAR = "PARAR";
+        private const string CMD_PARA = "PARA";
         private const string CMD_ANDAR = "ANDAR";
         private const string CMD_ANDA = "ANDA";
         private const string CMD_VIRAR = "VIRAR";
@@ -36,7 +38,7 @@ namespace VoiceRecognitionMovement
         public MainPage()
         {
             this.InitializeComponent();
-           
+
 
             InicializaVoz();
 
@@ -64,11 +66,16 @@ namespace VoiceRecognitionMovement
                 if (compilationResult.Status == SpeechRecognitionResultStatus.Success)
                 {
                     await recognizer.ContinuousRecognitionSession.StartAsync();
+                    Debug.WriteLine("reconhecendo");
                 }
                 else
                 {
                     Debug.WriteLine("Status: " + compilationResult.Status);
                 }
+            }
+            else
+            {
+                Debug.WriteLine("Sem permissão");
             }
         }
 
@@ -82,7 +89,7 @@ namespace VoiceRecognitionMovement
             int count = args.Result.SemanticInterpretation.Properties.Count;
             String cmd = args.Result.SemanticInterpretation.Properties.ContainsKey(TAG_CMD) ? args.Result.SemanticInterpretation.Properties[TAG_CMD][0].ToString() : "";
             String device = args.Result.SemanticInterpretation.Properties.ContainsKey(TAG_DEVICE) ? args.Result.SemanticInterpretation.Properties[TAG_DEVICE][0].ToString() : "";
-
+            Debug.WriteLine("fala reconhecid: " + cmd);
             switch (cmd)
             {
                 case CMD_ANDAR:
@@ -118,6 +125,8 @@ namespace VoiceRecognitionMovement
                     break;
 
                 case CMD_PARAR:
+                case CMD_PARA:
+                    //TODO implementar parada
                     break;
 
             }
@@ -153,31 +162,38 @@ namespace VoiceRecognitionMovement
         /// </summary>
         /// <param name="direction"> Direção que a cadeira será movida</param>
         /// <param name="speed"> Velocidade em que a cadeira será movida</param>
-        private void Move(string direction, decimal speed)
+        private async void Move(string direction, decimal speed)
         {
-            Thickness margin = imgCadeira.Margin;            
-            
-
-            switch (direction)
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
             {
-                case DEVICE_FRENTE:
-                    margin.Left += 10;
-                    break;
+                // Your UI update code goes here!
+                Thickness margin = imgCadeira.Margin;
 
-                case DEVICE_TRAS:
-                    margin.Right += 10;
-                    break;
 
-                case DEVICE_DIREITA:
-                    margin.Top += 10;
-                    break;
+                switch (direction)
+                {
+                    case DEVICE_FRENTE:
+                        margin.Left += 10;
+                        break;
 
-                case DEVICE_ESQEUERDA:
-                    margin.Top -= 10;
-                    break;
+                    case DEVICE_TRAS:
+                        margin.Right += 10;
+                        break;
+
+                    case DEVICE_DIREITA:
+                        margin.Top += 10;
+                        break;
+
+                    case DEVICE_ESQEUERDA:
+                        margin.Top -= 10;
+                        break;
+                }
+
+                imgCadeira.Margin = margin;
             }
-
-            imgCadeira.Margin = margin;
+            );
+            
         }
 
         private void btnFrente_Click(object sender, RoutedEventArgs e)
