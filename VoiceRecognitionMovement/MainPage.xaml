@@ -6,21 +6,78 @@
     xmlns:local="using:VoiceRecognitionMovement"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fa="using:FontAwesome.UWP"
+    
     mc:Ignorable="d">
 
-    <StackPanel  Background="Gray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-    <StackPanel Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="600">
-        <Image x:Name="imgCadeira" Source="Assets/wheelchair.png" Width="50" Height="100" Margin="130,200,0,0">
+    <StackPanel   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="500">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                <fa:FontAwesome Icon="Wheelchair" FontSize="40"  Foreground="#17445a"/>
+                <TextBlock Text="V.O.W.C." VerticalAlignment="Center" Margin="15,0,0,0" FontSize="30" FontWeight="Bold" Foreground="#17445a"/>
+            </StackPanel>
+            
+            <Image x:Name="imgCadeira" Source="Assets/wheelchair.png" Width="50" Height="100" Margin="130,200,0,0">
 
-        </Image>
+            </Image>
+
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Background="#daeaf1" VerticalAlignment="Stretch">
+            <Grid Width="185" Height="185" HorizontalAlignment="Left" Margin="20,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnTras" Content="Tras" Click="btnTras_Click" Grid.Column="0" Grid.Row="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image x:Name="imgLeft" Source="Assets/arrow-left-red.png" Width="75" Height="35"/>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <Button x:Name="btnFrente" Content="Frente" Click="btnFrente_Click" Grid.Column="2" Grid.Row="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image x:Name="imgRight" Source="Assets/arrow-right-red.png" Width="75" Height="35"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnDireita" Content="Direita" Click="btnDireita_Click" Grid.Column="1" Grid.Row="2">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image x:Name="imgDown" Source="Assets/arrow-down-red.png" Width="35" Height="75"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnEsquerda" Content="Esquerda" Click="btnEsquerda_Click"  Grid.Column="1" Grid.Row="0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image x:Name="imgUp" Source="Assets/arrow-up-red.png" Width="35" Height="75"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+            <StackPanel Margin="100,20,0,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock Text="Comando reconhecido:" FontWeight="Bold" Foreground="#17445a" FontSize="25"/>
+                    <TextBlock x:Name="txbCommandRecognized" Text=""  Foreground="#17445a" FontSize="25" Margin="20,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock Text="Direção Movida:" FontWeight="Bold" Foreground="#17445a" FontSize="25"/>
+                    <TextBlock x:Name="txbDirectionMoved" Text="" Foreground="#17445a" FontSize="25" Margin="20,0,0,0"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
         
-
-    </StackPanel>
-    <StackPanel Orientation="Horizontal">
-        <Button x:Name="btnFrente" Content="Frente" Click="btnFrente_Click"/>
-        <Button x:Name="btnTras" Content="Tras" Click="btnTras_Click" Margin="10,0,0,0"/>
-        <Button x:Name="btnEsquerda" Content="Esquerda" Click="btnEsquerda_Click" Margin="10,0,0,0"/>
-        <Button x:Name="btnDireita" Content="Direita" Click="btnDireita_Click" Margin="10,0,0,0"/>
-    </StackPanel>
     </StackPanel>
 </Page>
