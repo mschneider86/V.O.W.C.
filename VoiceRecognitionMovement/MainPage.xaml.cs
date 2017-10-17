@@ -13,8 +13,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace VoiceRecognitionMovement
 {
     public sealed partial class MainPage : Page
@@ -105,6 +103,7 @@ namespace VoiceRecognitionMovement
             String cmd = args.Result.SemanticInterpretation.Properties.ContainsKey(TAG_CMD) ? args.Result.SemanticInterpretation.Properties[TAG_CMD][0].ToString() : "";
             String device = args.Result.SemanticInterpretation.Properties.ContainsKey(TAG_DEVICE) ? args.Result.SemanticInterpretation.Properties[TAG_DEVICE][0].ToString() : "";
 
+
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
@@ -123,11 +122,11 @@ namespace VoiceRecognitionMovement
                         switch (device)
                         {
                             case DEVICE_FRENTE:
-                                Move(DEVICE_FRENTE, 1);
+                                Move(DEVICE_FRENTE);
                                 break;
 
                             case DEVICE_TRAS:
-                                Move(DEVICE_TRAS, 1);
+                                Move(DEVICE_TRAS);
                                 break;
                         }
                     }
@@ -139,20 +138,16 @@ namespace VoiceRecognitionMovement
                         switch (device)
                         {
                             case DEVICE_DIREITA:
-                                Move(DEVICE_DIREITA, 1);
+                                Move(DEVICE_DIREITA);
                                 break;
 
                             case DEVICE_ESQEUERDA:
-                                Move(DEVICE_ESQEUERDA, 1);
+                                Move(DEVICE_ESQEUERDA);
                                 break;
                         }
                     }
                     break;
 
-                case CMD_PARAR:
-                case CMD_PARA:
-                    //TODO implementar parada
-                    break;
 
                 default:
                     txbCommandRecognized.Text = "Comando não reconhecido!";
@@ -190,8 +185,7 @@ namespace VoiceRecognitionMovement
         /// Método para mover a cadeira
         /// </summary>
         /// <param name="direction"> Direção que a cadeira será movida</param>
-        /// <param name="speed"> Velocidade em que a cadeira será movida</param>
-        private async void Move(string direction, decimal speed)
+        private async void Move(string direction)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
@@ -231,25 +225,25 @@ namespace VoiceRecognitionMovement
 
         private void btnFrente_Click(object sender, RoutedEventArgs e)
         {            
-            Move(DEVICE_FRENTE, 1);
+            Move(DEVICE_FRENTE);
             txbCommandRecognized.Text = "TOQUE SETA DIREITA";
         }
 
         private void btnTras_Click(object sender, RoutedEventArgs e)
         {
-            Move(DEVICE_TRAS, 1);
+            Move(DEVICE_TRAS);
             txbCommandRecognized.Text = "TOQUE SETA ESQUERDA";
         }
 
         private void btnEsquerda_Click(object sender, RoutedEventArgs e)
         {
-            Move(DEVICE_ESQEUERDA, 1);
+            Move(DEVICE_ESQEUERDA);
             txbCommandRecognized.Text = "TOQUE SETA CIMA";
         }
 
         private void btnDireita_Click(object sender, RoutedEventArgs e)
         {
-            Move(DEVICE_DIREITA, 1);
+            Move(DEVICE_DIREITA);
             txbCommandRecognized.Text = "TOQUE SETA BAIXO";
         }
 
