@@ -196,22 +196,22 @@ namespace VoiceRecognitionMovement
                 switch (direction)
                 {
                     case DEVICE_FRENTE:
-                        margin.Left += 10;
+                        margin.Left += 30;
                         ChangeArrowColor(DEVICE_FRENTE);                        
                         break;
 
                     case DEVICE_TRAS:
-                        margin.Right += 10;
+                        margin.Right += 30;
                         ChangeArrowColor(DEVICE_TRAS);
                         break;
 
                     case DEVICE_DIREITA:
-                        margin.Top += 10;
+                        margin.Top +=30;
                         ChangeArrowColor(DEVICE_DIREITA);
                         break;
 
                     case DEVICE_ESQEUERDA:
-                        margin.Top -= 10;
+                        margin.Top -= 30;
                         ChangeArrowColor(DEVICE_ESQEUERDA);
                         break;
                 }
